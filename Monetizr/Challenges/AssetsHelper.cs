@@ -24,7 +24,7 @@ namespace Monetizr.Challenges
             }
 
             Texture2D texture = DownloadHandlerTexture.GetContent(uwr);
-            onAssetDownloaded?.Invoke(asset, Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero));
+            onAssetDownloaded.Invoke(asset, Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero));
         }
 
         /// <summary>

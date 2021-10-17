@@ -153,6 +153,7 @@ namespace Monetizr.Challenges
                     {"age", playerInfo.age.ToString()},
                     {"game-type", playerInfo.gameType},
                     {"player-id", playerInfo.playerId},
+                    {"duration", ChallengeAnalytics.GetElapsedTime(challenge).ToString()}
                 }
             };
             
