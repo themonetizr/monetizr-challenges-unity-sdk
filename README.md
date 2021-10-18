@@ -8,7 +8,7 @@ Clone the repository and import `monetizr_challenges_unity_sdk_1.0.unitypackage`
 
 # Usage
 
-You have to create and use one instance of `ChallengesClient`  class and use it to communicate with the Monetizr Challenges API. You also have to set the current user's information in `ChallengesClient.playerInfo` (at least the identifier) to use the SDK. Challenge list can be retrieved using `GetList`. Whenever a progress is being made by player, `UpdateChallenge` has to be called. When the challenge is done, a claim button must be shown in the challenge menu and `ClaimChallenge` must be called whenever player clicks it.
+You have to create and use one instance of `ChallengesClient`  class and use it to communicate with the Monetizr Challenges API. You also have to set the current user's information in `ChallengesClient.playerInfo` (at least the identifier) to use the SDK. Challenge list can be retrieved using `GetList`. Whenever a progress is being made by player, `UpdateChallenge` has to be called. When the challenge is done, a claim button must be shown in the challenge menu and `ClaimChallenge` must be called whenever player clicks on the 'claim'.
 
 # Reference
 [Detailed Documentation](#documentation)
@@ -16,7 +16,7 @@ You have to create and use one instance of `ChallengesClient`  class and use it 
 ## ChallengesClient
 
 `ChallengesClient(string apiKey, int timeout = 30)` – creates an instance of ChallengesClient and sets the API key used by the SDK to apiKey.<br>
-`GetList()` – gets a list of challenges available to player.<br>
+`GetList()` – gets a list of challenges available to a player.<br>
 `GetSingle(string id)` – gets a single challenges identified by id.<br>
 `UpdateStatus(Challenge challenge, int progress, Action onSuccess, Action onFailure)` – updates the player's progress.<br>
 `ClaimChallenge(Challenge challenge, Action onSuccess, Action onFailure)` – must be called when player click the claim button on a completed challenge.<br>
@@ -30,23 +30,23 @@ You have to create and use one instance of `ChallengesClient`  class and use it 
 
 ## PlayerInfo
 
-`location` – location of the current user (currently not used).<br>
-`age` – age of the current user (optional).<br>
-`gameType` – type of the game (currently not used).<br>
+`location` – location of the current user (the location is used for challenges that are targeted for a specific region, for challenges without regional targeting is not being used).<br>
+`age` – age of the current user (used for challenges that are age specific, for challenges without age without age restrictions is not being used).<br>
+`gameType` – type of the game (used for challenges that are targeted for a specific game types).<br>
 `playerId` – a unique identifier of the user (mandatory).<br>
 
 ## Challenge
-`id` – identification number of the challenge (must be passed to UpdateChallenge and ClaimChallenge)
+`id` – identification number of the challenge (must be passed to UpdateChallenge and ClaimChallenge)<br>
 `title` – title of the challenge (must be visible in the challenge menu).<br>
 `content` – description of the challenge (must be visible in the challenge menu).<br>
 `progress` – players progress (must be visible in the challenge menu).<br>
-`reward` – type of reward when the challenge is done (0 for in-game money).<br>
+`reward` – type of reward when the challenge is done (created for each game individually).<br>
 `assets` – a list of assets of the challenge (see Challenge.Asset).<br>
 
 ## Challenge.Asset
 `id` – identification number of the asset (can be ignored).<br>
-`type` – type of the asset (`icon` or `banner`).<br>
-`title` – name of the asset (can be ignored).<br>
+`type` – type of the asset (`icon`, `banner`, `3DObject`).<br>
+`title` – name of the asset (can be used as a key-value pair identifier).<br>
 `url` – the location of the asset.<br>
 
 ---
